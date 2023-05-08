@@ -4,7 +4,7 @@ import {
   headingMedium,
   headingSmall,
   headingXSmall,
-} from "@/app/styles/Mixins";
+} from "@/styles/Mixins";
 import { styled } from "styled-components";
 
 interface IAppHeading {

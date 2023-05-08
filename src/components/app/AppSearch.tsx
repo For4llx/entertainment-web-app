@@ -1,5 +1,5 @@
 "use client";
-import { headingLarge } from "@/app/styles/Mixins";
+import { headingLarge } from "@/styles/Mixins";
 import { styled } from "styled-components";
 
 const SearchIcon = () => {

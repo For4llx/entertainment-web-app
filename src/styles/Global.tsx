@@ -7,7 +7,7 @@ export const GlobalStyles = createGlobalStyle`
         margin: 0;
         box-sizing: border-box;
     }
-    html, body, #root {
+    html, body, #root, main {
         width: 100%;
         height: 100%;
         background-color: #10141E;
