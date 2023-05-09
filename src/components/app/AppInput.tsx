@@ -1,4 +1,3 @@
-"use client";
 import { bodyMedium, bodySmall } from "@/styles/Mixins";
 import { styled } from "styled-components";
 
