@@ -18,6 +18,7 @@ const SearchField = styled.input`
   color: ${(props) => props.theme.white};
   caret-color: ${(props) => props.theme.red};
   width: 484px;
+  height: fit-content;
   ${headingMedium}
 
   &:active {

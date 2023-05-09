@@ -21,7 +21,7 @@ const AppHeading = styled.h1<IAppHeading>`
       ? headingSmall
       : props.xsmall
       ? headingXSmall
-      : headingMedium}
+      : headingMedium};
 `;
 
 export default AppHeading;

@@ -1,6 +1,7 @@
 import { styled } from "styled-components";
 import Image from "next/image";
 import AppHeading from "./AppHeading";
+import { ICollection } from "@/interfaces/Collection";
 
 const BookMarkContainer = styled.div`
   cursor: pointer;
@@ -36,27 +37,31 @@ const BookMarkIcon = () => {
       <svg width="12" height="14" xmlns="http://www.w3.org/2000/svg">
         <path
           d="m10.518.75.399 12.214-5.084-4.24-4.535 4.426L.75 1.036l9.768-.285Z"
-          stroke-width="1.5"
+          strokeWidth="1.5"
         />
       </svg>
     </BookMarkContainer>
   );
 };
 
-const Thumbnail = styled(Image)`
+const Thumbnail = styled.img`
   border-radius: 8px;
 `;
 
-const CardImage = () => {
+interface ICardImage {
+  collection: ICollection;
+}
+
+const CardImage = ({ collection }: ICardImage) => {
   return (
     <picture>
-      <source srcSet="./assets/thumbnails/the-great-lands/regular/large.jpg" />
-      <source srcSet="./assets/thumbnails/the-great-lands/regular/medium.jpg" />
-      <source srcSet="./assets/thumbnails/the-great-lands/regular/small.jpg" />
+      <source srcSet={collection.thumbnail.regular.large} />
+      <source srcSet={collection.thumbnail.regular.medium} />
+      <source srcSet={collection.thumbnail.regular.small} />
       <Thumbnail
         width={280}
         height={174}
-        src="/assets/thumbnails/the-great-lands/regular/large.jpg"
+        src={collection.thumbnail.regular.large}
         alt={""}
       />
     </picture>
@@ -92,7 +97,7 @@ const Overlay = styled.div`
   justify-content: center;
   background-color: hsla(0, 0%, 0%, 50%);
   width: 100%;
-  height: 100%;
+  height: 174px;
   border-radius: 8px;
   opacity: 0;
 `;
@@ -101,17 +106,21 @@ const AppCardContainer = styled.article`
   cursor: pointer;
   position: relative;
   width: 280px;
-  height: 174px;
   border-radius: 8px;
   &:hover ${Overlay} {
     opacity: 1;
   }
 `;
 
-const AppCard = () => {
+interface IAppCard {
+  children: any;
+  collection: ICollection;
+}
+
+const AppCard = ({ children, collection }: IAppCard) => {
   return (
     <AppCardContainer>
-      <CardImage />
+      <CardImage collection={collection} />
       <BookMarkIcon />
       <Overlay>
         <PlayButton>
@@ -119,6 +128,7 @@ const AppCard = () => {
           <AppHeading xsmall>Play</AppHeading>
         </PlayButton>
       </Overlay>
+      {children}
     </AppCardContainer>
   );
 };

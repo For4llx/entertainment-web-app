@@ -7,12 +7,12 @@ import AppIconNavBookMark from "../app/AppIconNavBookMark";
 import { usePathname } from "next/navigation";
 
 interface INavigationLink {
-  pathName: string;
+  pathname: string;
 }
 
 const NavigationLink = styled(Link)<INavigationLink>`
   fill: ${(props) =>
-    props.pathName === props.href
+    props.pathname === props.href
       ? props.theme.white
       : props.theme.greyishBlue};
   &:hover {
@@ -38,27 +38,27 @@ const NavigationList = styled.ul`
 const NavigationContainer = styled.nav``;
 
 export const Navigation = () => {
-  const pathName = usePathname();
+  const pathname = usePathname();
   return (
     <NavigationContainer>
       <NavigationList>
         <NavigationItem>
-          <NavigationLink pathName={pathName} href="/">
+          <NavigationLink pathname={pathname} href="/">
             <AppIconNavHome />
           </NavigationLink>
         </NavigationItem>
         <NavigationItem>
-          <NavigationLink pathName={pathName} href="movies">
+          <NavigationLink pathname={pathname} href="/movies">
             <AppIconNavMovies />
           </NavigationLink>
         </NavigationItem>
         <NavigationItem>
-          <NavigationLink pathName={pathName} href="tv-series">
+          <NavigationLink pathname={pathname} href="/tv-series">
             <AppIconNavTvSeries />
           </NavigationLink>
         </NavigationItem>
         <NavigationItem>
-          <NavigationLink pathName={pathName} href="bookmark">
+          <NavigationLink pathname={pathname} href="/bookmark">
             <AppIconNavBookMark />
           </NavigationLink>
         </NavigationItem>
