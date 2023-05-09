@@ -19,6 +19,7 @@
 .DS_Store
 *.pem
 assets
+data.json
 
 # debug
 npm-debug.log*

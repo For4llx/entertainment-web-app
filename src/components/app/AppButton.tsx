@@ -1,5 +1,4 @@
-"use client";
-import { bodyMedium } from "@/app/styles/Mixins";
+import { bodyMedium } from "@/styles/Mixins";
 import { styled } from "styled-components";
 
 const AppButton = styled.button`

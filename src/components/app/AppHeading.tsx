@@ -1,10 +1,9 @@
-"use client";
 import {
   headingLarge,
   headingMedium,
   headingSmall,
   headingXSmall,
-} from "@/app/styles/Mixins";
+} from "@/styles/Mixins";
 import { styled } from "styled-components";
 
 interface IAppHeading {
@@ -22,7 +21,7 @@ const AppHeading = styled.h1<IAppHeading>`
       ? headingSmall
       : props.xsmall
       ? headingXSmall
-      : headingMedium}
+      : headingMedium};
 `;
 
 export default AppHeading;

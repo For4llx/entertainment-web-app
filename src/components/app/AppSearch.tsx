@@ -1,5 +1,4 @@
-"use client";
-import { headingLarge } from "@/app/styles/Mixins";
+import { headingLarge, headingMedium } from "@/styles/Mixins";
 import { styled } from "styled-components";
 
 const SearchIcon = () => {
@@ -19,7 +18,8 @@ const SearchField = styled.input`
   color: ${(props) => props.theme.white};
   caret-color: ${(props) => props.theme.red};
   width: 484px;
-  ${headingLarge}
+  height: fit-content;
+  ${headingMedium}
 
   &:active {
     border-bottom: 1px solid ${(props) => props.theme.greyishBlue};

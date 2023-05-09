@@ -1,18 +1,16 @@
-"use client";
-import { bodyMedium, bodySmall } from "@/app/styles/Mixins";
+import { bodyMedium, bodySmall } from "@/styles/Mixins";
 import { styled } from "styled-components";
 
 const InputField = styled.input`
-  padding: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1rem;
   background-color: transparent;
   color: ${(props) => props.theme.white};
   caret-color: ${(props) => props.theme.red};
+  border-bottom: 1px solid ${(props) => props.theme.greyishBlue};
   width: 336px;
   ${bodyMedium}
 
-  &:focus {
-    border-bottom: 1px solid ${(props) => props.theme.greyishBlue};
-  }
   &:active {
     border-bottom: 1px solid ${(props) => props.theme.white};
   }
@@ -28,6 +26,7 @@ const AppInputContainer = styled.div`
 `;
 
 const InputError = styled.p`
+  display: none; /* stay until form validation */
   position: absolute;
   top: 1.1rem;
   right: 1rem;
@@ -35,10 +34,14 @@ const InputError = styled.p`
   ${bodySmall}
 `;
 
-const AppInput = () => {
+interface IAppInput {
+  placeholder: string;
+}
+
+const AppInput = ({ placeholder }: IAppInput) => {
   return (
     <AppInputContainer>
-      <InputField placeholder="Email address" />
+      <InputField placeholder={placeholder} />
       <InputError>Can't be empty</InputError>
     </AppInputContainer>
   );

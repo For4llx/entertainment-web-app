@@ -42,3 +42,11 @@ export const bodySmall = css`
   font-weight: 300;
   letter-spacing: 0px;
 `;
+
+export const container = css`
+  --container: 1240px;
+  box-sizing: border-box;
+  width: 100%;
+  padding-left: max(calc(50% - var(--container) / 2), 2rem);
+  padding-right: max(calc(50% - var(--container) / 2), 2rem);
+`;
