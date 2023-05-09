@@ -26,6 +26,13 @@ const NavigationList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 2.5rem;
+  @media screen and (max-width: 768px) {
+    flex-direction: row;
+    gap: 2rem;
+  }
+  @media screen and (max-width: 375px) {
+    gap: 1.5rem;
+  }
 `;
 
 const NavigationContainer = styled.nav``;
