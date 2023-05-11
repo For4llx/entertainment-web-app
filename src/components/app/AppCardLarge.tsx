@@ -57,6 +57,16 @@ interface ICardImage {
   collection: ICollection;
 }
 
+const CardImageLarge = ({ collection }: ICardImage) => {
+  return (
+    <picture>
+      <source srcSet={collection.thumbnail.regular.large} />
+      <source srcSet={collection.thumbnail.trending.small} />
+      <ThumbnailLarge src={collection.thumbnail.trending.large} alt={""} />
+    </picture>
+  );
+};
+
 const Thumbnail = styled.img`
   border-radius: 8px;
   width: 280px;
@@ -99,19 +109,6 @@ const PlayButton = styled.div`
   width: 117px;
 `;
 
-const Overlay = styled.div`
-  position: absolute;
-  top: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: hsla(0, 0%, 0%, 50%);
-  width: 100%;
-  height: 174px;
-  border-radius: 8px;
-  opacity: 0;
-`;
-
 const OverlayLarge = styled.div`
   position: absolute;
   top: 0;
@@ -124,43 +121,58 @@ const OverlayLarge = styled.div`
   border-radius: 8px;
   opacity: 0;
 `;
-const AppCardContainer = styled.article`
+
+const AppCardContainerLarge = styled.article`
   cursor: pointer;
   position: relative;
-  width: 280px;
+  width: 470px;
   border-radius: 8px;
-  &:hover ${Overlay} {
+  &:hover ${OverlayLarge} {
     opacity: 1;
   }
+`;
+
+const Description = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 1.5rem;
+  border-radius: 8px;
+  position: absolute;
+  bottom: 4px;
+  width: 100%;
+  background-image: linear-gradient(hsla(0, 0%, 0%, 0%), hsla(0, 0%, 0%, 75%));
 `;
 
 interface IAppCard {
   collection: ICollection;
 }
 
-const AppCard = ({ collection }: IAppCard) => {
+const AppCardLarge = ({ collection }: IAppCard) => {
   return (
-    <AppCardContainer>
-      <CardImage collection={collection} />
+    <AppCardContainerLarge>
+      <CardImageLarge collection={collection} />
       <BookMarkIcon />
-      <Overlay>
+      <OverlayLarge>
         <PlayButton>
           <PlayIcon />
           <AppHeading xsmall>Play</AppHeading>
         </PlayButton>
-      </Overlay>
-      <AppParagraph small>
-        {collection.year}・
-        {collection.category === "Movie" ? (
-          <AppIconCategoryMovie />
-        ) : (
-          <AppIconCategoryTvSeries />
-        )}{" "}
-        {collection.category}・{collection.rating}
-      </AppParagraph>
-      <AppHeading xsmall>{collection.title}</AppHeading>
-    </AppCardContainer>
+      </OverlayLarge>
+      <Description>
+        <AppParagraph>
+          {collection.year}・
+          {collection.category === "Movie" ? (
+            <AppIconCategoryMovie />
+          ) : (
+            <AppIconCategoryTvSeries />
+          )}{" "}
+          {collection.category}・{collection.rating}
+        </AppParagraph>
+        <AppHeading small>{collection.title}</AppHeading>
+      </Description>
+    </AppCardContainerLarge>
   );
 };
 
-export default AppCard;
+export default AppCardLarge;

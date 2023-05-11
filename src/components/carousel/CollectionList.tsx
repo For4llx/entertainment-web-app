@@ -1,11 +1,11 @@
 import { ICollection } from "@/interfaces/Collection";
 import { styled } from "styled-components";
-import { CollectionItem } from "./MovieItem";
+import { CollectionItem } from "./CollectionItem";
 
 const CollectionListContainer = styled.ul`
   display: flex;
-  flex-wrap: wrap;
   gap: 2.5rem;
+  width: 1240px;
 `;
 
 interface ICollectionList {

@@ -1,5 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-import { getCollections } from "./CollectionAPI";
+import {
+  getCollections,
+  getMovies,
+  getTrendings,
+  getTvSeries,
+} from "./CollectionAPI";
 
 export const useFetchCollections = () => {
   const {
@@ -17,5 +22,62 @@ export const useFetchCollections = () => {
     isLoadingCollections,
     isErrorCollections,
     isSuccessCollections,
+  };
+};
+
+export const useFetchTrendings = () => {
+  const {
+    data: trendings,
+    isLoading: isLoadingTrendings,
+    isError: isErrorTrendings,
+    isSuccess: isSuccessTrendings,
+  } = useQuery({
+    queryKey: ["trendings"],
+    queryFn: getTrendings,
+  });
+
+  return {
+    trendings,
+    isLoadingTrendings,
+    isErrorTrendings,
+    isSuccessTrendings,
+  };
+};
+
+export const useFetchMovies = () => {
+  const {
+    data: movies,
+    isLoading: isLoadingMovies,
+    isError: isErrorMovies,
+    isSuccess: isSuccessMovies,
+  } = useQuery({
+    queryKey: ["movies"],
+    queryFn: getMovies,
+  });
+
+  return {
+    movies,
+    isLoadingMovies,
+    isErrorMovies,
+    isSuccessMovies,
+  };
+};
+
+export const useFetchTvSeries = () => {
+  const {
+    data: tvSeries,
+    isLoading: isLoadingtvSeries,
+    isError: isErrortvSeries,
+    isSuccess: isSuccesstvSeries,
+  } = useQuery({
+    queryKey: ["tvSeries"],
+    queryFn: getTvSeries,
+  });
+
+  return {
+    tvSeries,
+    isLoadingtvSeries,
+    isErrortvSeries,
+    isSuccesstvSeries,
   };
 };
