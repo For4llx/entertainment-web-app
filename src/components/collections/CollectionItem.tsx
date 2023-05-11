@@ -10,18 +10,5 @@ interface ICollectionItem {
 }
 
 export const CollectionItem = ({ collection }: ICollectionItem) => {
-  return (
-    <AppCard collection={collection}>
-      <AppParagraph small>
-        {collection.year}・
-        {collection.category === "Movie" ? (
-          <AppIconCategoryMovie />
-        ) : (
-          <AppIconCategoryTvSeries />
-        )}{" "}
-        {collection.category}・{collection.rating}
-      </AppParagraph>
-      <AppHeading>{collection.title}</AppHeading>
-    </AppCard>
-  );
+  return <AppCard collection={collection} />;
 };
