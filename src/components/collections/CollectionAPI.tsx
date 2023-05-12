@@ -35,3 +35,23 @@ export const getTvSeries = async (): Promise<Array<ICollection>> => {
   );
   return tvSeries;
 };
+
+export const getBookmarkedMovies = async (): Promise<Array<ICollection>> => {
+  const response = await fetch("./data.json");
+  const data = await response.json();
+  const tvSeries = data.filter(
+    (collection: ICollection) =>
+      collection.category === "Movie" && collection.isBookmarked
+  );
+  return tvSeries;
+};
+
+export const getBookmarkedTvSeries = async (): Promise<Array<ICollection>> => {
+  const response = await fetch("./data.json");
+  const data = await response.json();
+  const tvSeries = data.filter(
+    (collection: ICollection) =>
+      collection.category === "TV Series" && collection.isBookmarked
+  );
+  return tvSeries;
+};
