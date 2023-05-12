@@ -5,4 +5,5 @@ export const PageLayout = styled.div`
   flex-direction: column;
   gap: 2.5rem;
   padding-top: 2rem;
+  width: 100%;
 `;

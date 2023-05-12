@@ -1,5 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import {
+  getBookmarkedMovies,
+  getBookmarkedTvSeries,
   getCollections,
   getMovies,
   getTrendings,
@@ -79,5 +81,43 @@ export const useFetchTvSeries = () => {
     isLoadingtvSeries,
     isErrortvSeries,
     isSuccesstvSeries,
+  };
+};
+
+export const useFetchBookmarkedMovies = () => {
+  const {
+    data: bookmarkedMovies,
+    isLoading: isLoadingbookmarkedMovies,
+    isError: isErrorbookmarkedMovies,
+    isSuccess: isSuccessbookmarkedMovies,
+  } = useQuery({
+    queryKey: ["bookmarkedMovies"],
+    queryFn: getBookmarkedMovies,
+  });
+
+  return {
+    bookmarkedMovies,
+    isLoadingbookmarkedMovies,
+    isErrorbookmarkedMovies,
+    isSuccessbookmarkedMovies,
+  };
+};
+
+export const useFetchBookmarkedTvSeries = () => {
+  const {
+    data: bookmarkedTvSeries,
+    isLoading: isLoadingbookmarkedTvSeries,
+    isError: isErrorbookmarkedTvSeries,
+    isSuccess: isSuccessbookmarkedTvSeries,
+  } = useQuery({
+    queryKey: ["bookmarkedTvSeries"],
+    queryFn: getBookmarkedTvSeries,
+  });
+
+  return {
+    bookmarkedTvSeries,
+    isLoadingbookmarkedTvSeries,
+    isErrorbookmarkedTvSeries,
+    isSuccessbookmarkedTvSeries,
   };
 };

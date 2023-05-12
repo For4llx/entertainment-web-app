@@ -58,7 +58,7 @@ export const Navigation = () => {
           </NavigationLink>
         </NavigationItem>
         <NavigationItem>
-          <NavigationLink pathname={pathname} href="/bookmark">
+          <NavigationLink pathname={pathname} href="/bookmarked">
             <AppIconNavBookMark />
           </NavigationLink>
         </NavigationItem>
