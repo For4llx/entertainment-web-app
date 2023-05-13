@@ -4,6 +4,9 @@ import {
   getBookmarkedTvSeries,
   getCollections,
   getMovies,
+  getSearchCollections,
+  getSearchMovies,
+  getSearchTvSeries,
   getTrendings,
   getTvSeries,
 } from "./CollectionAPI";
@@ -116,6 +119,72 @@ export const useFetchBookmarkedTvSeries = () => {
 
   return {
     bookmarkedTvSeries,
+    isLoadingbookmarkedTvSeries,
+    isErrorbookmarkedTvSeries,
+    isSuccessbookmarkedTvSeries,
+  };
+};
+
+interface IuseFetchSearchedCollections {
+  searchTerm: string;
+}
+
+export const useFetchSearchedCollections = ({
+  searchTerm,
+}: IuseFetchSearchedCollections) => {
+  const {
+    data: searchedCollections,
+    isLoading: isLoadingbookmarkedTvSeries,
+    isError: isErrorbookmarkedTvSeries,
+    isSuccess: isSuccessbookmarkedTvSeries,
+  } = useQuery({
+    queryKey: ["search", searchTerm],
+    queryFn: () => getSearchCollections({ searchTerm }),
+  });
+
+  return {
+    searchedCollections,
+    isLoadingbookmarkedTvSeries,
+    isErrorbookmarkedTvSeries,
+    isSuccessbookmarkedTvSeries,
+  };
+};
+
+export const useFetchSearchedMovies = ({
+  searchTerm,
+}: IuseFetchSearchedCollections) => {
+  const {
+    data: searchedMovies,
+    isLoading: isLoadingbookmarkedTvSeries,
+    isError: isErrorbookmarkedTvSeries,
+    isSuccess: isSuccessbookmarkedTvSeries,
+  } = useQuery({
+    queryKey: ["search", searchTerm],
+    queryFn: () => getSearchMovies({ searchTerm }),
+  });
+
+  return {
+    searchedMovies,
+    isLoadingbookmarkedTvSeries,
+    isErrorbookmarkedTvSeries,
+    isSuccessbookmarkedTvSeries,
+  };
+};
+
+export const useFetchSearchedTvSeries = ({
+  searchTerm,
+}: IuseFetchSearchedCollections) => {
+  const {
+    data: searchedTvSeries,
+    isLoading: isLoadingbookmarkedTvSeries,
+    isError: isErrorbookmarkedTvSeries,
+    isSuccess: isSuccessbookmarkedTvSeries,
+  } = useQuery({
+    queryKey: ["search", searchTerm],
+    queryFn: () => getSearchTvSeries({ searchTerm }),
+  });
+  return {
+    searchedTvSeries,
     isLoadingbookmarkedTvSeries,
     isErrorbookmarkedTvSeries,
     isSuccessbookmarkedTvSeries,

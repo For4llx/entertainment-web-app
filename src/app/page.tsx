@@ -10,6 +10,7 @@ import {
 import { SideBar } from "@/components/sidebar";
 import { HomeLayout } from "@/layouts/HomeLayout";
 import { PageLayout } from "@/layouts/PageLayout";
+import { useRouter } from "next/navigation";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "../styles/Global";
 import { theme } from "../styles/Theme";
@@ -17,6 +18,11 @@ import { theme } from "../styles/Theme";
 export default function HomePage() {
   const { trendings } = useFetchTrendings();
   const { collections } = useFetchCollections();
+  const router = useRouter();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    router.push(`/search?term=${encodeURIComponent(e.target[0].value)}`);
+  };
   if (collections && trendings) {
     return (
       <ThemeProvider theme={theme}>
@@ -25,7 +31,10 @@ export default function HomePage() {
           <SideBar />
           <PageLayout>
             <AppHeader>
-              <AppSearch />
+              <AppSearch
+                placeholder="Search for movies or TV series"
+                handleSubmit={handleSubmit}
+              />
               <Carousel heading="Trending" collections={trendings} />
             </AppHeader>
             <Collections

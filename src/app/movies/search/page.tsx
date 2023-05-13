@@ -3,29 +3,32 @@ import AppHeader from "@/components/app/AppHeader";
 import AppSearch from "@/components/app/AppSearch";
 import { Collections } from "@/components/collections";
 import {
-  useFetchMovies,
+  useFetchCollections,
+  useFetchSearchedCollections,
   useFetchSearchedMovies,
+  useFetchTrendings,
+  useFetchTvSeries,
 } from "@/components/collections/ColelctionHook";
 import { SideBar } from "@/components/sidebar";
 import { HomeLayout } from "@/layouts/HomeLayout";
 import { PageLayout } from "@/layouts/PageLayout";
-import { useRouter, useSearchParams } from "next/navigation";
 import { ThemeProvider } from "styled-components";
-import { GlobalStyles } from "../../styles/Global";
-import { theme } from "../../styles/Theme";
+import { GlobalStyles } from "../../../styles/Global";
+import { theme } from "../../../styles/Theme";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export default function HomePage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const searchTerm = searchParams?.get("term") || "";
-  const { movies } = useFetchMovies();
+  const { searchedMovies } = useFetchSearchedMovies({ searchTerm });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    router.push(`/movies/search?term=${encodeURIComponent(e.target[0].value)}`);
+    router.push(`movies/search?term=${encodeURIComponent(e.target[0].value)}`);
   };
 
-  if (movies) {
+  if (searchedMovies) {
     return (
       <ThemeProvider theme={theme}>
         <GlobalStyles />
@@ -33,12 +36,12 @@ export default function HomePage() {
           <SideBar />
           <PageLayout>
             <AppHeader>
-              <AppSearch
-                placeholder="Search for movies"
-                handleSubmit={handleSubmit}
-              />
+              <AppSearch handleSubmit={handleSubmit} />
             </AppHeader>
-            <Collections heading="Movies" collections={movies} />
+            <Collections
+              heading={`Found ${searchedMovies.length} results for "${searchTerm}"`}
+              collections={searchedMovies}
+            />
           </PageLayout>
         </HomeLayout>
       </ThemeProvider>

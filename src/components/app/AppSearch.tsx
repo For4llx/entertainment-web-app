@@ -1,4 +1,6 @@
 import { headingLarge, headingMedium } from "@/styles/Mixins";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { styled } from "styled-components";
 
 const SearchIcon = () => {
@@ -26,16 +28,16 @@ const SearchField = styled.input`
   }
 `;
 
-const AppSearchContainer = styled.div`
+const AppSearchContainer = styled.form`
   display: flex;
   gap: 1.5rem;
 `;
 
-const AppSearch = () => {
+const AppSearch = ({ handleSubmit, placeholder }: any) => {
   return (
-    <AppSearchContainer>
+    <AppSearchContainer onSubmit={handleSubmit}>
       <SearchIcon />
-      <SearchField placeholder="Search for movies or TV series" />
+      <SearchField placeholder={placeholder} />
     </AppSearchContainer>
   );
 };

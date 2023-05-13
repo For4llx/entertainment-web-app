@@ -9,6 +9,7 @@ import {
 import { SideBar } from "@/components/sidebar";
 import { HomeLayout } from "@/layouts/HomeLayout";
 import { PageLayout } from "@/layouts/PageLayout";
+import { useRouter } from "next/navigation";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "../../styles/Global";
 import { theme } from "../../styles/Theme";
@@ -16,6 +17,11 @@ import { theme } from "../../styles/Theme";
 export default function HomePage() {
   const { bookmarkedMovies } = useFetchBookmarkedMovies();
   const { bookmarkedTvSeries } = useFetchBookmarkedTvSeries();
+  const router = useRouter();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    router.push(`/search?term=${encodeURIComponent(e.target[0].value)}`);
+  };
   if (bookmarkedMovies && bookmarkedTvSeries) {
     return (
       <ThemeProvider theme={theme}>
@@ -24,7 +30,7 @@ export default function HomePage() {
           <SideBar />
           <PageLayout>
             <AppHeader>
-              <AppSearch />
+              <AppSearch handleSubmit={handleSubmit} />
             </AppHeader>
             <Collections
               heading="Bookmarked Movies"
