@@ -33,11 +33,11 @@ const AppSearchContainer = styled.form`
   gap: 1.5rem;
 `;
 
-const AppSearch = ({ handleSubmit, placeholder }: any) => {
+const AppSearch = ({ handleSubmit, placeholder, defaultValue }: any) => {
   return (
     <AppSearchContainer onSubmit={handleSubmit}>
       <SearchIcon />
-      <SearchField placeholder={placeholder} />
+      <SearchField defaultValue={defaultValue} placeholder={placeholder} />
     </AppSearchContainer>
   );
 };

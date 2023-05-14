@@ -20,7 +20,9 @@ export default function HomePage() {
   const router = useRouter();
   const handleSubmit = (e) => {
     e.preventDefault();
-    router.push(`/search?term=${encodeURIComponent(e.target[0].value)}`);
+    router.push(
+      `/bookmarked/search?term=${encodeURIComponent(e.target[0].value)}`
+    );
   };
   if (bookmarkedMovies && bookmarkedTvSeries) {
     return (
@@ -30,7 +32,10 @@ export default function HomePage() {
           <SideBar />
           <PageLayout>
             <AppHeader>
-              <AppSearch handleSubmit={handleSubmit} />
+              <AppSearch
+                handleSubmit={handleSubmit}
+                placeholder="Search for bookmarked shows"
+              />
             </AppHeader>
             <Collections
               heading="Bookmarked Movies"

@@ -36,7 +36,11 @@ export default function HomePage() {
           <SideBar />
           <PageLayout>
             <AppHeader>
-              <AppSearch handleSubmit={handleSubmit} />
+              <AppSearch
+                placeholder="Search for movies or TV series"
+                handleSubmit={handleSubmit}
+                defaultValue={searchTerm}
+              />
             </AppHeader>
             <Collections
               heading={`Found ${searchedCollections.length} results for "${searchTerm}"`}

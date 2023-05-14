@@ -12,7 +12,9 @@ interface INavigationLink {
 
 const NavigationLink = styled(Link)<INavigationLink>`
   fill: ${(props) =>
-    props.pathname === props.href
+    props.pathname === props.href ||
+    props.pathname === props.href + "/search" ||
+    props.pathname === props.href + "search"
       ? props.theme.white
       : props.theme.greyishBlue};
   &:hover {
@@ -39,6 +41,7 @@ const NavigationContainer = styled.nav``;
 
 export const Navigation = () => {
   const pathname = usePathname();
+  console.log(pathname);
   return (
     <NavigationContainer>
       <NavigationList>

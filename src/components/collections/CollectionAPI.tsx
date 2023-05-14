@@ -1,7 +1,7 @@
 import { ICollection } from "@/interfaces/Collection";
 
 export const getCollections = async (): Promise<Array<ICollection>> => {
-  const response = await fetch("./data.json");
+  const response = await fetch("./json/data.json");
   const data = await response.json();
   const collections = data.filter(
     (collection: ICollection) => collection.isTrending === false
@@ -10,7 +10,7 @@ export const getCollections = async (): Promise<Array<ICollection>> => {
 };
 
 export const getTrendings = async (): Promise<Array<ICollection>> => {
-  const response = await fetch("./data.json");
+  const response = await fetch("./json/data.json");
   const data = await response.json();
   const trendings = data.filter(
     (collection: ICollection) => collection.isTrending
@@ -19,7 +19,7 @@ export const getTrendings = async (): Promise<Array<ICollection>> => {
 };
 
 export const getMovies = async (): Promise<Array<ICollection>> => {
-  const response = await fetch("./data.json");
+  const response = await fetch("./json/data.json");
   const data = await response.json();
   const movies = data.filter(
     (collection: ICollection) => collection.category === "Movie"
@@ -28,7 +28,7 @@ export const getMovies = async (): Promise<Array<ICollection>> => {
 };
 
 export const getTvSeries = async (): Promise<Array<ICollection>> => {
-  const response = await fetch("./data.json");
+  const response = await fetch("./json/data.json");
   const data = await response.json();
   const tvSeries = data.filter(
     (collection: ICollection) => collection.category === "TV Series"
@@ -37,7 +37,7 @@ export const getTvSeries = async (): Promise<Array<ICollection>> => {
 };
 
 export const getBookmarkedMovies = async (): Promise<Array<ICollection>> => {
-  const response = await fetch("./data.json");
+  const response = await fetch("./json/data.json");
   const data = await response.json();
   const tvSeries = data.filter(
     (collection: ICollection) =>
@@ -47,7 +47,7 @@ export const getBookmarkedMovies = async (): Promise<Array<ICollection>> => {
 };
 
 export const getBookmarkedTvSeries = async (): Promise<Array<ICollection>> => {
-  const response = await fetch("./data.json");
+  const response = await fetch("./json/data.json");
   const data = await response.json();
   const tvSeries = data.filter(
     (collection: ICollection) =>
@@ -63,10 +63,10 @@ interface IGetSearch {
 export const getSearchCollections = async ({
   searchTerm,
 }: IGetSearch): Promise<Array<ICollection>> => {
-  const response = await fetch("./data.json");
+  const response = await fetch("./json/data.json");
   const data = await response.json();
   const searchedCollections = data.filter((collection: ICollection) =>
-    collection.title.match(searchTerm)
+    collection.title.toLowerCase().match(searchTerm.toLowerCase())
   );
   return searchedCollections;
 };
@@ -74,13 +74,13 @@ export const getSearchCollections = async ({
 export const getSearchMovies = async ({
   searchTerm,
 }: IGetSearch): Promise<Array<ICollection>> => {
-  const response = await fetch("../../data.json");
+  const response = await fetch("../../json/data.json");
   const data = await response.json();
   const movies = data.filter(
     (collection: ICollection) => collection.category === "Movie"
   );
   const searchedMovies = movies.filter((collection: ICollection) =>
-    collection.title.match(searchTerm)
+    collection.title.toLowerCase().match(searchTerm.toLowerCase())
   );
   return searchedMovies;
 };
@@ -88,13 +88,27 @@ export const getSearchMovies = async ({
 export const getSearchTvSeries = async ({
   searchTerm,
 }: IGetSearch): Promise<Array<ICollection>> => {
-  const response = await fetch("../../data.json");
+  const response = await fetch("../../json/data.json");
   const data = await response.json();
   const tvSeries = data.filter(
     (collection: ICollection) => collection.category === "TV Series"
   );
   const searchedTvSeries = tvSeries.filter((collection: ICollection) =>
-    collection.title.match(searchTerm)
+    collection.title.toLowerCase().match(searchTerm.toLowerCase())
   );
   return searchedTvSeries;
+};
+
+export const getSearchedBookmarked = async ({
+  searchTerm,
+}: IGetSearch): Promise<Array<ICollection>> => {
+  const response = await fetch("../../json/data.json");
+  const data = await response.json();
+  const collections = data.filter(
+    (collection: ICollection) => collection.isBookmarked
+  );
+  const searchedCollections = collections.filter((collection: ICollection) =>
+    collection.title.toLowerCase().match(searchTerm.toLowerCase())
+  );
+  return searchedCollections;
 };

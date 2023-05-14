@@ -5,6 +5,7 @@ import {
   getCollections,
   getMovies,
   getSearchCollections,
+  getSearchedBookmarked,
   getSearchMovies,
   getSearchTvSeries,
   getTrendings,
@@ -185,6 +186,26 @@ export const useFetchSearchedTvSeries = ({
   });
   return {
     searchedTvSeries,
+    isLoadingbookmarkedTvSeries,
+    isErrorbookmarkedTvSeries,
+    isSuccessbookmarkedTvSeries,
+  };
+};
+
+export const useFetchSearchedBookmarked = ({
+  searchTerm,
+}: IuseFetchSearchedCollections) => {
+  const {
+    data: searchedBookmarked,
+    isLoading: isLoadingbookmarkedTvSeries,
+    isError: isErrorbookmarkedTvSeries,
+    isSuccess: isSuccessbookmarkedTvSeries,
+  } = useQuery({
+    queryKey: ["search", searchTerm],
+    queryFn: () => getSearchedBookmarked({ searchTerm }),
+  });
+  return {
+    searchedBookmarked,
     isLoadingbookmarkedTvSeries,
     isErrorbookmarkedTvSeries,
     isSuccessbookmarkedTvSeries,

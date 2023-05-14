@@ -43,6 +43,7 @@ export default function HomePage() {
               <AppSearch
                 placeholder="Sarch for TV series"
                 handleSubmit={handleSubmit}
+                defaultValue={searchTerm}
               />
             </AppHeader>
             <Collections

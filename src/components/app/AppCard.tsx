@@ -5,6 +5,7 @@ import { ICollection } from "@/interfaces/Collection";
 import AppParagraph from "./AppParagraph";
 import AppIconCategoryMovie from "./AppIconCategoryMovie";
 import AppIconCategoryTvSeries from "./AppIconCategoryTvSeries";
+import { usePathname } from "next/navigation";
 
 const BookMarkContainer = styled.div`
   cursor: pointer;
@@ -70,10 +71,10 @@ interface ICardImage {
 const CardImage = ({ collection }: ICardImage) => {
   return (
     <picture>
-      <source srcSet={collection.thumbnail.regular.large} />
-      <source srcSet={collection.thumbnail.regular.medium} />
-      <source srcSet={collection.thumbnail.regular.small} />
-      <Thumbnail src={collection.thumbnail.regular.large} alt={""} />
+      <source srcSet={`/${collection.thumbnail.regular.large}`} />
+      <source srcSet={`/${collection.thumbnail.regular.medium}`} />
+      <source srcSet={`/${collection.thumbnail.regular.small}`} />
+      <Thumbnail src={`/${collection.thumbnail.regular.large}`} alt={""} />
     </picture>
   );
 };

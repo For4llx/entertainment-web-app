@@ -4,8 +4,8 @@ import AppSearch from "@/components/app/AppSearch";
 import { Collections } from "@/components/collections";
 import {
   useFetchCollections,
+  useFetchSearchedBookmarked,
   useFetchSearchedCollections,
-  useFetchSearchedMovies,
   useFetchTrendings,
   useFetchTvSeries,
 } from "@/components/collections/ColelctionHook";
@@ -21,14 +21,16 @@ export default function HomePage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const searchTerm = searchParams?.get("term") || "";
-  const { searchedMovies } = useFetchSearchedMovies({ searchTerm });
+  const { searchedBookmarked } = useFetchSearchedBookmarked({ searchTerm });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    router.push(`movies/search?term=${encodeURIComponent(e.target[0].value)}`);
+    router.push(
+      `/bookmarked/search?term=${encodeURIComponent(e.target[0].value)}`
+    );
   };
 
-  if (searchedMovies) {
+  if (searchedBookmarked) {
     return (
       <ThemeProvider theme={theme}>
         <GlobalStyles />
@@ -37,14 +39,14 @@ export default function HomePage() {
           <PageLayout>
             <AppHeader>
               <AppSearch
-                placeholder="Search for movies"
+                placeholder="Search for bookmarked shows"
                 handleSubmit={handleSubmit}
                 defaultValue={searchTerm}
               />
             </AppHeader>
             <Collections
-              heading={`Found ${searchedMovies.length} results for "${searchTerm}"`}
-              collections={searchedMovies}
+              heading={`Found ${searchedBookmarked.length} results for "${searchTerm}"`}
+              collections={searchedBookmarked}
             />
           </PageLayout>
         </HomeLayout>
